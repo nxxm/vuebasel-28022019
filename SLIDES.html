@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
 
-    <title>C++ Everywhere with WebAssembly</title>
+    <title>Developing for the WebAssembly target</title>
 
     <meta name="description" content="What modern C++ has to offer to the web !">
     <meta name="author" content="Damien Buhl (alias daminetreg)">
@@ -68,7 +68,7 @@
     </div>
     <div class="logo">
       <img class="plain" width="auto" height="100rem" src="gfx/logo_big.png"  >
-      <img style="opacity: 0.8;" width="auto" height="100rem" src="gfx/cppcon.png"  >
+      <img style="opacity: 0.8;" width="auto" height="100rem" src="gfx/vuebasel.png"  >
     </div>
 
     <div class="reveal">
@@ -76,8 +76,8 @@
       <!-- Any section element inside of this container is displayed as a slide -->
       <div class="slides">
         <section>
-          <h2>C++ Everywhere with</h2>
-          <h1>WebAssembly</h1>
+          <h2>Developing for the</h2>
+          <h1>WebAssembly target</h1>
           <!--
           <h3><span style="color:#13DAEC;" >N</span>ot a C<span style="color:#13DAEC;" >++</span> Package <span style="color:#13DAEC;" >M</span>anager</h3>
           -->
@@ -128,7 +128,7 @@
               <li>Small files</li>
               <li>Fast decoding</li>
               <li>Reduced memory usage</li>
-              <li>The syntheis &amp; evolution of asm.js &amp; PNaCl</li>
+              <li>The synthesis &amp; evolution of asm.js &amp; PNaCl</li>
             </ul>
           </section>
           <section>
@@ -225,7 +225,7 @@
             <h2>WASM Runtime</h2>
             <ul>
               <li>Native speed, no emulation</li>
-              <li>C++ Heap &amp; Stack is allocated in a contiguous memory segment</li>
+              <li>C++ Heap is allocated in a contiguous memory segment</li>
               <li>No Garbage Collection: Memory management as usual</li>
             </ul>
           </section>
@@ -379,6 +379,18 @@ app.listen(80);</code></pre>
           </section>
 
           <section>
+            <h2>REST in C++</h2>
+<pre style="font-size:0.4em;"><code class="cpp">app.GET(&#x22;/user&#x22;s, [](bete::session&#x26;&#x26; session, size_t id) { 
+  session.response.write(&#x22;user &#x22;s + id);
+});
+
+app.listen(80);</code></pre>
+            <p class="fragment">id will always be a number.</p>
+          </section>
+
+
+
+          <section>
             <h2>REST argument parser in C++</h2>
           <pre style="font-size:0.4em;"><code class="cpp">namespace qi = boost::spirit::qi;
 namespace ct = boost::callable_traits;
@@ -522,13 +534,18 @@ BELLE_VUE_OBSERVABLE(datamodel_t, benchmarks);</code></pre>
               <li>IEEE 754-2008 32-bit and 64-bit floating point.</li>
             </ul>
           </section>
+
+         <section>
+            <h2>Faster load time</h2>
+            <img class="plain" width="auto" height="450rem" src="gfx/feature-serializationfree.png"  >
+          </section>
           
           <section>
-            <h2>What if we abuse std::is_trivially_copyable ? </h2>
+            <h2>Achieved by abusing std::is_trivially_copyable</h2>
           </section>
 
           <section>
-            <h3>What if we abuse std::is_trivially_copyable ? </h3>
+            <h3>Abusing std::is_trivially_copyable </h3>
             <pre style="font-size:0.4em;"><code class="cpp">template&#x3C;class Stream, class T&#x3E;
 inline void write(Stream&#x26; stream, const T&#x26; value) {
   using decayed_T = typename std::decay_t&#x3C;T&#x3E;;
@@ -556,26 +573,23 @@ inline void write(Stream&#x26; stream, const T&#x26; value) {
   }
 }</code></pre> 
           </section>
-         <section>
-            <h2>Faster load time</h2>
-            <img class="plain" width="auto" height="450rem" src="gfx/feature-serializationfree.png"  >
-          </section>
+
       </section>
 
       <section>
         <section>
-          <h1>The most awesome C++17 Feature</h1>
+          <h1>Combining the best of two worlds</h1>
         </section>
 
         <section>
-          <h2>True Heterogeneous containers are now possible</h2>
+          <h2>Getting as flexible as Javascript</h2>
           <ul>
             <li>std::vector&lt;std::variant&lt; ... &gt;&gt; : most of the time the best solution</li>
             <li>But with template variables we can go further!</li>
           </ul>
         </section>
         <section>
-          <h2>Static Typing doesn't mean less flexibility</h2>
+          <h2>Static but flexible</h2>
           <pre style="font-size:0.4em;"><code class="cpp">struct heterogeneous_container
 {
 
@@ -610,6 +624,48 @@ void main() {
     </section>
 
     </section>
+
+    <section>
+
+      <section>
+        <p>
+          <img class="plain" src="gfx/vuejs.svg" width="400em">
+        </p>
+      </section>
+      <section>
+        <h2>Why is a C++ dev here ? </h2>
+        <ul>
+          <li>Empowering C++ codebases with Vue.js</li>
+          <li>Striving to make the virtual DOM even faster</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Vue.js 3.0</h2>
+        <ul>
+          <li><span style="font-style:italic;">Plans for the Next Iteration of Vue.js</span>, Evan You - <a href="https://bit.ly/2P31U12">https://bit.ly/2P31U12</a> </li>
+          <li><span class="font-style:italic;">Introduce built-in support for authoring components as native ES2015 classes</span>, Evan You - <a href="https://bit.ly/2T6Tvjq">https://bit.ly/2T6Tvjq</a> </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>belle::vue</h2>
+        <h4>Introducing support for authoring components as native C++ classes</h4>
+
+        <h5>
+          <a href="https://github.com/nxxm/bellevue">github.com/nxxm/bellevue</a>
+        </h5>
+
+      </section>
+      <section>
+        <h2>Updating the DOM</h2>
+        <ul>
+          <li>Concurrently from Javascript &amp; C++</li>
+          <li>Tracking changes to {{ some_variable }} in both worlds</li>
+        </ul>
+      </section>
+
+    </section>
+
 
     <section>
       <h2>Join us to improve the Web</h2>
